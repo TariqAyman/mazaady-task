@@ -8,6 +8,11 @@ use App\Http\Controllers\Auth\API\PasswordResetLinkController;
 use App\Http\Controllers\Auth\API\RegisteredUserController;
 use App\Http\Controllers\Auth\API\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\EmployeeController;
+use App\Http\Controllers\API\SalaryController;
+use App\Http\Controllers\API\DepartmentController;
+use App\Http\Controllers\API\FolderController;
+use App\Http\Controllers\API\NoteController;
 
 Route::post('/register', [RegisteredUserController::class, 'store'])
     ->middleware('guest')
@@ -37,6 +42,26 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/public-notes', [NoteController::class, 'showPublic']);
+
+Route::group(['middleware' => 'auth:sanctum'], function ()  {
+    // Employees
+    Route::apiResource('employees', EmployeeController::class);
+
+    // Salaries
+    Route::apiResource('salaries', SalaryController::class);
+
+    // Departments
+    Route::apiResource('departments', DepartmentController::class);
+
+    // Notes
+    Route::apiResource('folders/{folder}/notes', NoteController::class);
+
+    // Folders
+    Route::apiResource('folders', FolderController::class);
+
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });

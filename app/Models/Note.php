@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,5 +22,12 @@ class Note extends Model
     public function folder()
     {
         return $this->belongsTo(Folder::class);
+    }
+
+    protected function pdfPath(): Attribute
+    {
+        return Attribute::make(
+            get: fn (?string $value) => empty($value) ? null : asset($value),
+        );
     }
 }

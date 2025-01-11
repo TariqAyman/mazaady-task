@@ -1,0 +1,728 @@
+{
+	"info": {
+		"_postman_id": "a7919c20-014b-4237-999c-2dd86d4249ad",
+		"name": "Mazaady Task API",
+		"description": "Postman collection for the Mazaady Task API, demonstrating CRUD for Employees, Salaries, Departments, Folders, and Notes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2573933"
+	},
+	"item": [
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/employees",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Employee (by ID)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/employees/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"employees",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "departments[]",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/employees",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee (by ID)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								},
+								{
+									"key": "departments[]",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseURL}}/employees/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"employees",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee (by ID)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/employees/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"employees",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Salaries",
+			"item": [
+				{
+					"name": "Get All Salaries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/salaries",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"salaries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Salary (by ID)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/salaries/8",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"salaries",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Salary",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 2500.00\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/salaries",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"salaries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Salary (by ID)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 3000.50\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/salaries/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"salaries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Salary (by ID)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/salaries/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"salaries",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Departments",
+			"item": [
+				{
+					"name": "Get All Departments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/departments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Department (by ID)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/departments/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"departments",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Department",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"HR-2\",\n  \"salary_id\" : 2\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/departments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Department (by ID)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Finance\",\n  \"salary_id\" : 2\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/departments/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"departments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Department (by ID)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/departments/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"departments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Folders",
+			"item": [
+				{
+					"name": "Get All Folders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/folders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Folder (by ID)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/folders/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"My Folder\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/folders",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Folder (by ID)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Folder\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/folders/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Folder (by ID)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/folders/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notes",
+			"item": [
+				{
+					"name": "Get All Notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/folders/5/notes",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"5",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Note (by ID)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/folders/5/notes/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"5",
+								"notes",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Note",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"folder_id\": 1,\n  \"title\": \"New Note\",\n  \"content\": \"This is a note.\",\n  \"visibility\": \"private\",\n  \"type\": \"text\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/folders/5/notes",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"5",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Note (by ID)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"My Updated Note\",\n  \"content\": \"Updated content.\",\n  \"visibility\": \"shared\",\n  \"type\": \"pdf\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/folders/5/notes/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"5",
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Note (by ID)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/folders/5/notes/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"folders",
+								"5",
+								"notes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show Public Note",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public-notes/",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public-notes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res = pm.response.json();\r",
+							"\r",
+							"if(res.token)\r",
+							"    pm.environment.set(\"access_token\", res.token);\r",
+							"\r",
+							"pm.collectionVariables.set(\"access_token\", res.token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test@example.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"let letters = {\r",
+					"    'ar' : 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي',\r",
+					"    'en' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'\r",
+					"}\r",
+					"\r",
+					"const generateRandomNumber = (n) => [...Array(n)].map(_=>Math.random()*10|0).join``\r",
+					"\r",
+					"const generateRandomString = (n, lang = 'en') =>  [...Array(n)].map(_ => letters[lang][Math.floor(Math.random() *  letters[lang].length)]).join('');\r",
+					"\r",
+					"\r",
+					"\r",
+					"pm.request.headers.add({key: 'Accept', value: 'application/json' })\r",
+					"pm.request.headers.add({key: 'Content-Type', value: 'application/json' })\r",
+					"console.log(pm.request?.auth?.type != 'noauth');\r",
+					"if (pm.request?.auth?.type !='noauth' && \r",
+					"    pm.collectionVariables.get('access_token')){\r",
+					"        pm.request.headers.add({key: 'Authorization', value: 'bearer {{access_token}}' })    \r",
+					"    }\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://mazaady-task.test/api",
+			"type": "default"
+		},
+		{
+			"key": "access_token",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}

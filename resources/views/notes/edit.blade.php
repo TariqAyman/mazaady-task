@@ -85,7 +85,7 @@
                 <!-- For pdf notes -->
                 <div x-show="type === 'pdf'">
                     <label for="pdf_path" class="block font-medium text-gray-700">PDF Path</label>
-                    <a href="{{ asset($note->pdf_path) }}">{{ asset($note->pdf_path) }}</a>
+                    <a href="{{ $note->pdf_path }}">{{ $note->pdf_path }}</a>
                     <input
                         type="file"
                         id="pdf_path"
