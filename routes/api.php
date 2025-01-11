@@ -44,7 +44,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 Route::get('/public-notes', [NoteController::class, 'showPublic']);
 
-Route::group(['middleware' => 'auth:sanctum','name' => 'api.'], function ()  {
+Route::group(['middleware' => 'auth:sanctum'], function ()  {
     // Employees
     Route::apiResource('employees', EmployeeController::class);
 

@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
     // CRUD for employees
     Route::resource('employees', EmployeeController::class);
 
-    // CRUD for employees
+    // CRUD for departments
     Route::resource('departments', DepartmentController::class);
 
     // CRUD for salaries
