@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-
     public function __construct(
         private readonly EmployeeService   $employeeService,
         private readonly DepartmentService $departmentService
