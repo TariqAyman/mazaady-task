@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Storage;
 
 class Note extends Model
 {
@@ -27,7 +28,7 @@ class Note extends Model
     protected function pdfPath(): Attribute
     {
         return Attribute::make(
-            get: fn (?string $value) => empty($value) ? null : asset($value),
+            get: fn (?string $value) => empty($value) ? null : Storage::url($value),
         );
     }
 }
