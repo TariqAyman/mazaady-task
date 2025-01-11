@@ -1,66 +1,227 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# README
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1. Project Overview
 
-## About Laravel
+This **Laravel** project implements a set of **CRUD (Create, Read, Update, Delete)** operations and additional features for the following entities:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Employees**
+2. **Salaries**
+3. **Departments**
+4. **Folders**
+5. **Notes**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Core Tasks
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Employees**:
+    - Each employee can be assigned to one or multiple departments.
+    - CRUD endpoints for managing employees.
 
-## Learning Laravel
+- **Salaries**:
+    - Each department has an associated salary (one salary can be linked to multiple departments).
+    - CRUD endpoints to manage salary amounts.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Departments**:
+    - Many-to-many relationship with employees.
+    - Each department references a salary.
+    - CRUD endpoints for departments.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Folders & Notes**:
+    - A folder can have multiple notes.
+    - Notes can be of type **text** or **pdf**, with optional fields like `text_body` or `pdf_path`.
+    - Each note can be private or shared.
+    - CRUD endpoints for managing folders and notes.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Additional Features
 
-## Laravel Sponsors
+- **N-th Highest Salary** logic (optional in a specific route):
+    - Return employees who have the N-th highest salary among all.
+- **User Authentication** (if you enable it):
+    - By default, routes can be protected via **auth:sanctum** or **basic-auth** in the code.
+- **Basic Testing** with at least 3 test cases (optional, see `tests/` folder).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 2. Installation & Setup
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **Clone** or **Download** this repository:
 
-## Contributing
+   ```bash
+   git clone https://github.com/TariqAyman/mazaady-task
+   cd mazaady-task
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Install Dependencies** using Composer:
 
-## Code of Conduct
+   ```bash
+   composer install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Copy .env** file and generate key:
 
-## Security Vulnerabilities
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. **Configure .env**:
+    - Update `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` to match your local database setup.
+    - Optionally configure `APP_URL`, `APP_NAME`, etc.
 
-## License
+5. **(Optional) Configure Sanctum** if you want token-based authentication:
+   ```bash
+   php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+   php artisan migrate
+   ```
+   Then set `SANCTUM_STATEFUL_DOMAINS` and so forth.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 3. Migrations & Seeding
+
+1. **Run Migrations**:
+
+   ```bash
+   php artisan migrate
+   ```
+
+   This will create the tables:
+    - `employees`, `departments`, `salaries`, pivot table `department_employee`
+    - `folders`, `notes`, `users` (if you have basic user model)
+    - etc.
+
+2. **Seed the Database** (optional):
+
+   ```bash
+   php artisan db:seed
+   ```
+
+   This will insert sample data into:
+    - `employees` table (10 or so dummy employees)
+    - `salaries` table (distinct amounts)
+    - `departments` table (random departments referencing salaries)
+    - Pivot table linking employees to departments
+    - Possibly a test user for authentication
+
+You can customize the seeding logic in `database/seeders/DatabaseSeeder.php` or the dedicated seeders.
+
+---
+
+## 4. Running & Testing the Project
+
+- **Serve the Application**:
+
+  ```bash
+  php artisan serve
+  ```
+
+  The API will be accessible at `http://127.0.0.1:8000`.
+
+- **Run Tests** (if implemented):
+
+  ```bash
+  php artisan test
+  ```
+
+  or
+
+  ```bash
+  vendor/bin/phpunit
+  ```
+
+  or
+
+  ```bash
+  vendor/bin/pest
+  ```
+
+  (depending on whether you use PHPUnit or Pest).
+
+---
+
+## 5. API Endpoints
+
+Below is a **summary** of the main endpoints. All URLs below assume you are prefixing with `/api`. For example, `http://your-domain.test/api/employees`. Adjust if your route group or domain differs.
+
+### 5.1 Employees
+
+| Method | Endpoint          | Description                           | Body/Params                               |
+|--------|-------------------|---------------------------------------|-------------------------------------------|
+| **GET**    | `/employees`         | List all employees                    | -                                         |
+| **POST**   | `/employees`         | Create a new employee                 | `{"name":"John"}` |
+| **GET**    | `/employees/{id}`    | Show a single employee                | -                                         |
+| **PUT**    | `/employees/{id}`    | Update an employee                    | `{"name":"..."}` |
+| **DELETE** | `/employees/{id}`    | Delete an employee                    | -                                         |
+
+> **Note**: If employees must select departments at creation, include an array like `"departments": [1,2]`.
+
+### 5.2 Salaries
+
+| Method | Endpoint          | Description                 | Body/Params            |
+|--------|-------------------|-----------------------------|------------------------|
+| **GET**    | `/salaries`         | List all salaries                | -                      |
+| **POST**   | `/salaries`         | Create a new salary              | `{"amount": 3000.0}`   |
+| **GET**    | `/salaries/{id}`    | Show salary by ID                | -                      |
+| **PUT**    | `/salaries/{id}`    | Update an existing salary        | `{"amount": 5000.0}`   |
+| **DELETE** | `/salaries/{id}`    | Delete a salary                  | -                      |
+
+### 5.3 Departments
+
+| Method | Endpoint             | Description                    | Body/Params                      |
+|--------|----------------------|--------------------------------|----------------------------------|
+| **GET**    | `/departments`         | List all departments             | -                                |
+| **POST**   | `/departments`         | Create a department              | `{"name": "HR", "salary_id":1}`  |
+| **GET**    | `/departments/{id}`    | Show a specific department       | -                                |
+| **PUT**    | `/departments/{id}`    | Update department                | `{"name":"Finance","salary_id":2}` |
+| **DELETE** | `/departments/{id}`    | Delete department                | -                                |
+
+### 5.4 Folders
+
+| Method | Endpoint       | Description                          | Body/Params           |
+|--------|---------------|--------------------------------------|-----------------------|
+| **GET**    | `/folders`       | List all folders (for the user)    | -                     |
+| **POST**   | `/folders`       | Create a folder                    | `{"name": "My Folder"}` |
+| **GET**    | `/folders/{id}`  | Show folder by ID                  | -                     |
+| **PUT**    | `/folders/{id}`  | Update a folder                    | `{"name": "New Name"}`|
+| **DELETE** | `/folders/{id}`  | Delete a folder                    | -                     |
+
+### 5.5 Notes
+
+| Method | Endpoint       | Description                                | Body/Params                                                   |
+|--------|---------------|--------------------------------------------|---------------------------------------------------------------|
+| **GET**    | `/notes`         | List all notes (or notes for the user)       | -                                                             |
+| **POST**   | `/notes`         | Create a note                                  | `{"folder_id":1,"title":"...","text_body":"...","type":"text"}` |
+| **GET**    | `/notes/{id}`    | Show note by ID                                | -                                                             |
+| **PUT**    | `/notes/{id}`    | Update a note                                  | `{"title":"...","text_body":"...","type":"pdf","pdf_path":"..."}` |
+| **DELETE** | `/notes/{id}`    | Delete a note                                  | -                                                             |
+
+**Optional**: If notes are nested under folders (like `/folders/{folder}/notes`), the endpoints might differ. Adjust accordingly.
+
+### 5.6 Special / Additional Endpoints
+
+- **N-th Highest Salary** (if implemented):
+    - Example `GET /salaries?nth=3` => returns employees with the 3rd highest salary.
+
+- **Public/Shared Notes**: If some notes are shared publicly:
+    - `GET /notes` => returns the note if `visibility=shared`.
+
+### 5.7 Authentication (if enabled)
+
+If you use **Sanctum** or **Passport**, you might have:
+
+- `POST /login` => returns a token
+- Set `Authorization: Bearer <token>` in headers for subsequent calls.
+
+Refer to your project’s **auth** instructions if needed.
+
+---
+
+## Conclusion
+
+This project implements **multiple CRUD** resources:
+
+- Employees, Salaries, Departments (with relationships)
+- Folders & Notes (with text/pdf types, visibility)
+
+**Setup** involves standard Laravel steps: install dependencies, configure `.env`, migrate, seed data, then use the **API endpoints** described above. For any advanced usage (e.g., role-based access, advanced file uploads, etc.), consult the extended documentation or code comments.
+
+**Enjoy using the Mazaady Task project!**
